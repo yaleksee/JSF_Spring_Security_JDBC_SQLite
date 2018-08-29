@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+>
+
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible"/>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <title>JSF CRUD</title>
+    <style type="text/css">
+        {
+            width: 80px !important
+        ;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form id="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <h2 style="text-align: center" class="col-sm-4">Edit Price Record</h2>
+        </div>
+        <hr/>
+        <div class="form-group">
+            <h:outputLabel for="name-id" class="control-label col-sm-2">User Name:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputText id="name-id" value="#{editRecordObj.name}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <h:outputLabel for="value-id" class="control-label col-sm-2">value:</h:outputLabel>
+            <div class="col-sm-4">
+                <h:inputSecret id="value-id" value="#{editRecordObj.value}" class="form-control"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="col-sm-2">
+                    <h:commandButton value="Update" actionListener="#{priceBean.updatePriceDetails(editRecordObj)}"
+                                     class="btn btn-primary updateBtnStyle"/>
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-2">
+                    <h:link outcome="pricesList" value="View prices Record List" class="btn btn-primary"/>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</h:body>
+</html>

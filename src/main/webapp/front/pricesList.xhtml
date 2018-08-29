@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible"/>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <title>JSF CRUD Example</title>
+    <style type="text/css">
+        .tableUpdated {
+            width: 90% !important;
+            margin: 17px 58px 0 !important;
+        }
+
+        .btnSpace {
+            margin: 17px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h2><h:outputText value="Prices for Cars"/></h2>
+    <h:form id="PriceForm">
+        <h:dataTable id="PriceTable" binding="#{table}" value="#{priceBean.pricesList()}" var="price"
+                     class="table table-striped table-hover table-bordered tableUpdated" styleClass="admin_table">
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                <h:outputText value="#{price.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                <h:outputText value="#{price.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Value</f:facet>
+                <h:outputText value="#{price.value}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Edit</f:facet>
+                <h:commandButton action="#{priceBean.editPriceRecord(price.id)}" value="Edit"
+                                 class="btn btn-primary"/>
+            </h:column>
+
+
+            <h:column id="Column">
+                <f:facet name="header">Delete</f:facet>
+                <h:commandButton id="ajax" value="Delete" class="">
+                    <f:ajax execute="@this" render=":PriceForm" listener="#{priceBean.deletePriceRecord(price.id)}"/>
+                </h:commandButton>
+            </h:column>
+
+        </h:dataTable>
+
+        <h:commandButton action="createPrice.xhtml?faces-redirect=true" value="Create New Price"
+                         class="btn btn-success btnSpace"/>
+        <h:column>
+            <h:commandButton action="/pages/index.jsp?faces-redirect=true" value="На страницу авторизации"
+                             class="btn btn-success btnSpace"/>
+        </h:column>
+    </h:form>
+</h:body>
+</html>
